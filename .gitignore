@@ -1,5 +1,26 @@
-# Object file
-*.o
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Aa]uto[Bb]uild/
+/Assets/NoBuild
+/Assets/NoBuild.meta
 
-# Ada Library Information
-*.ali
+.vscode/
+.vs/
+
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.userprefs
+*.app
+.idea/
+*.VC.*
+.DS_Store
+*~
+*.swp
+
+*.log
+*.pyc
