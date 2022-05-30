@@ -6,6 +6,7 @@
 /[Aa]uto[Bb]uild/
 /Assets/NoBuild
 /Assets/NoBuild.meta
+/Assets/ThirdParty/*
 
 .vscode/
 .vs/

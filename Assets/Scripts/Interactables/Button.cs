@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Button : Interactable
 {
+	[SerializeField]
+	private GameObject door;
+	private bool doorOpen;
+
 	protected override void Interact()
 	{
-		Debug.Log("Interacted with " + gameObject.name);
+		doorOpen = !doorOpen;
+		door.GetComponent<Animator>().SetBool("isOpen", doorOpen);
 	}
 }
