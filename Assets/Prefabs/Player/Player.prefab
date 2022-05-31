@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 475265950}
   - component: {fileID: 475265951}
   - component: {fileID: 475265952}
+  - component: {fileID: 8078278033262221770}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -235,3 +236,23 @@ MonoBehaviour:
   cam: {fileID: 4763468205720489637}
   xSensitivity: 30
   ySensitivity: 30
+--- !u!114 &8078278033262221770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452928931478143552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d54161517a21b4ca73f996bb66e58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  chipSpeed: 2
+  frontHealthBar: {fileID: 0}
+  backHealthBar: {fileID: 0}
+  damageOverlay: {fileID: 0}
+  damageOverlayStrong: {fileID: 0}
+  duration: 0
+  fadeSpeed: 0

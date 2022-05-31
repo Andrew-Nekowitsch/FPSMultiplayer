@@ -4,8 +4,6 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Aa]uto[Bb]uild/
-/Assets/NoBuild
-/Assets/NoBuild.meta
 /Assets/ThirdParty/*
 
 .vscode/
