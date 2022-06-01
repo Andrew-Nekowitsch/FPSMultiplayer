@@ -5,15 +5,16 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
 	private CharacterController controller;
+	private PlayerAnimator playerAnimator;
 	private Vector3 playerVelocity;
 	private bool isGrounded;
-	private bool isSprinting;
+	private bool isRunning;
 	private bool isCrouching;
 	private bool crouchLerp;
 	private float crouchTimer = 0f;
 	public float speed = 5f;
 	public float walkSpeed = 5f;
-	public float sprintSpeed = 8f;
+	public float runSpeed = 8f;
 	public float crouchSpeed = 3f;
 	public float gravity = -9.8f;
 	public float jumpHeight = 3f;
@@ -22,6 +23,7 @@ public class PlayerMotor : MonoBehaviour
 	void Start()
 	{
 		controller = GetComponent<CharacterController>();
+		playerAnimator = GetComponent<PlayerAnimator>();
 	}
 
 	// Update is called once per frame
@@ -37,6 +39,14 @@ public class PlayerMotor : MonoBehaviour
 		Vector3 moveDirection = Vector3.zero;
 		moveDirection.x = input.x;
 		moveDirection.z = input.y;
+
+		if (input != Vector2.zero)
+			playerAnimator.SetMoving(true);
+		else
+		{
+			playerAnimator.SetRunning(false);
+			playerAnimator.SetMoving(false);
+		}
 
 		controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
 		playerVelocity.y += gravity * Time.deltaTime;
@@ -55,39 +65,30 @@ public class PlayerMotor : MonoBehaviour
 		}
 	}
 
-	public void Sprint()
+	public void Run()
 	{
 		if (isGrounded)
 		{
-			isSprinting = !isSprinting;
-			if(isCrouching)
-			{
+			if (isCrouching)
 				Crouch();
-			}
-			if (isSprinting)
-			{
-				speed = sprintSpeed;
-			}
-			else
-			{
-				speed = walkSpeed;
-			}
+
+			isRunning = !isRunning;
+			playerAnimator.ToggleRunning();
+			speed = isRunning ? runSpeed : walkSpeed;
 		}
 	}
 
 	public void Crouch()
 	{
 		isCrouching = !isCrouching;
-		isSprinting = false;
+		playerAnimator.ToggleCrouching();
 		crouchTimer = 0f;
 		crouchLerp = true;
-		if (isCrouching)
+		speed = isCrouching ? crouchSpeed : walkSpeed;
+		if (isRunning)
 		{
-			speed = crouchSpeed;
-		}
-		else
-		{
-			speed = walkSpeed;
+			isRunning = false;
+			playerAnimator.ToggleRunning();
 		}
 	}
 
@@ -99,15 +100,9 @@ public class PlayerMotor : MonoBehaviour
 			float p = crouchTimer / 1;
 			p *= p;
 
-			if (isCrouching)
-			{
-				controller.height = Mathf.Lerp(controller.height, 1, p);
-			}
-			else
-			{
-				controller.height = Mathf.Lerp(controller.height, 2, p);
-			}
-			transform.localScale = new Vector3(1, (controller.height / 2), 1);
+			controller.height =
+				isCrouching ? Mathf.Lerp(controller.height, 1, p) : Mathf.Lerp(controller.height, 2, p);
+			//transform.localScale = new Vector3(1, (controller.height / 2), 1);
 
 			if (p > 1)
 			{

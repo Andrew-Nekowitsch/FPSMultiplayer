@@ -3588,6 +3588,24 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &367256184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8452928931478143552, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+  m_PrefabInstance: {fileID: 901934670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &367256192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367256184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f52ac15f9168a48909914fc88465b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1196431244}
 --- !u!43 &383493483
 Mesh:
   m_ObjectHideFlags: 0
@@ -9719,6 +9737,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4530101683914108567, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530101683914108567, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530101683921739619, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530101683921739619, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7637313726654617772, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -9729,7 +9763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7637313726654617772, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 1.955
       objectReference: {fileID: 0}
     - target: {fileID: 7637313726654617772, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12888,6 +12922,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!95 &1196431244 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4530101683914108567, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+  m_PrefabInstance: {fileID: 901934670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1274243154
 Mesh:
   m_ObjectHideFlags: 0
