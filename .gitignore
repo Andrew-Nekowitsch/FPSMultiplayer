@@ -5,6 +5,8 @@
 /[Bb]uilds/
 /[Aa]uto[Bb]uild/
 /Assets/ThirdParty/*
+/Assets/Opsive
+/Assets/Opsive.meta
 
 .vscode/
 .vs/
