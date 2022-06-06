@@ -4452,6 +4452,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8078278033262221770, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+      propertyPath: backHealthBar
+      value: 
+      objectReference: {fileID: 1777542351}
+    - target: {fileID: 8078278033262221770, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+      propertyPath: damageOverlay
+      value: 
+      objectReference: {fileID: 914277883}
+    - target: {fileID: 8078278033262221770, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+      propertyPath: frontHealthBar
+      value: 
+      objectReference: {fileID: 686088478}
+    - target: {fileID: 8078278033262221770, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
+      propertyPath: damageOverlayStrong
+      value: 
+      objectReference: {fileID: 174485629}
     - target: {fileID: 8452928931478143552, guid: 5a9a50fbf80c93d4ab2f4c4748243bb5, type: 3}
       propertyPath: m_Name
       value: Player
