@@ -26,7 +26,6 @@ public class PlayerMotor : MonoBehaviour
 		playerAnimator = GetComponent<PlayerAnimator>();
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		isGrounded = controller.isGrounded;

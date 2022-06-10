@@ -11,6 +11,7 @@ namespace CMF
 	{
 		private PlayerInput playerInput;
 		public PlayerInput.OnFootActions onFoot;
+		private PlayerAnimator playerAnimator;
 
 		//Walk on walls
 		public float wallWalkTimer = 0f;
@@ -50,6 +51,8 @@ namespace CMF
 		//Saved horizontal movement velocity from last frame;
 		Vector3 savedMovementVelocity = Vector3.zero;
 
+		Vector3 savedMovementDirection = Vector3.zero;
+
 		//Amount of downward gravity;
 		public float gravity = 30f;
 		[Tooltip("How fast the character will slide down steep slopes.")]
@@ -86,6 +89,7 @@ namespace CMF
 			playerInput = new PlayerInput();
 			onFoot = playerInput.OnFoot;
 			onFoot.Jump.performed += ctx => HandleJumping();
+			playerAnimator = GetComponent<PlayerAnimator>();
 			//onFoot.Sprint.performed += ctx => playerMotor.Run();
 			//onFoot.Crouch.performed += ctx => playerMotor.Crouch();
 
@@ -149,10 +153,9 @@ namespace CMF
 
 		//Calculate and return movement direction based on player input;
 		//This function can be overridden by inheriting scripts to implement different player controls;
-		protected virtual Vector3 CalculateMovementDirection()
+		public virtual void CalculateMovementDirection(Vector2 input)
 		{
 			Vector3 _velocity = Vector3.zero;
-			Vector2 input = onFoot.Movement.ReadValue<Vector2>();
 
 			//If no camera transform has been assigned, use the character's transform axes to calculate the movement direction;
 			if (cameraTransform == null)
@@ -172,14 +175,14 @@ namespace CMF
 			if (_velocity.magnitude > 1f)
 				_velocity.Normalize();
 
-			return _velocity;
+			savedMovementDirection = _velocity;
 		}
 
 		//Calculate and return movement velocity based on player input, controller state, ground normal [...];
 		protected virtual Vector3 CalculateMovementVelocity()
 		{
 			//Calculate (normalized) movement direction;
-			Vector3 _velocity = CalculateMovementDirection();
+			Vector3 _velocity = savedMovementDirection;
 
 			//Multiply (normalized) velocity with movement speed;
 			_velocity *= movementSpeed;
