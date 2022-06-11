@@ -125,6 +125,11 @@ namespace CMF
 			if (currentControllerState == ControllerState.Grounded)
 				_velocity = CalculateMovementVelocity();
 
+			if (_velocity != Vector3.zero)
+				playerAnimator.SetMoving(true);
+			else
+				playerAnimator.SetMoving(false);
+
 			//If local momentum is used, transform momentum into world space first;
 			Vector3 _worldMomentum = momentum;
 			if (useLocalMomentum)
