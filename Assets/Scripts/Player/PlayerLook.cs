@@ -10,6 +10,8 @@ public class PlayerLook : MonoBehaviour
     public float xSensitivity = 30f;
     public float ySensitivity = 30f;
 
+    public WeaponSway weaponSway;
+
 	void Start()
 	{
         Cursor.lockState = CursorLockMode.Locked;
@@ -25,5 +27,16 @@ public class PlayerLook : MonoBehaviour
 
         cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         transform.Rotate(mouseX * Time.deltaTime * xSensitivity * Vector3.up);
+
+        Sway(input);
+	}
+
+    void Sway(Vector2 input)
+    {
+        if (!weaponSway)
+        {
+            return;
+		}
+        weaponSway.Sway(input);
 	}
 }

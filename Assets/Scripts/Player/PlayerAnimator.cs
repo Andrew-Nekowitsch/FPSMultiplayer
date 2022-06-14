@@ -4,35 +4,46 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-	public Animator animator;
+	public Animator[] movementAnimators;
+	public Animator[] aimingAnimators;
 	private bool isRunning = false;
 	private bool isCrouching = false;
 	private bool isMoving = false;
+	private bool isAiming = false;
 
-	public void ToggleRunning() {
-		isRunning = !isRunning;
-		animator.SetBool("isRunning", isRunning);
-	}
 	public void SetRunning(bool running)
 	{
 		isRunning = running;
-		animator.SetBool("isRunning", isRunning);
-	}
-
-	public void ToggleCrouching()
-	{
-		isCrouching = !isCrouching;
-		animator.SetBool("isCrouching", isCrouching);
-	}
-
-	public void ToggleMoving()
-	{
-		isMoving = !isMoving;
-		animator.SetBool("isMoving", isMoving);
+		SetMovementBool("isRunning", isRunning);
 	}
 	public void SetMoving(bool moving)
 	{
 		isMoving = moving;
-		animator.SetBool("isMoving", isMoving);
+		SetMovementBool("isMoving", isMoving);
+	}
+	public void SetCrouching(bool moving)
+	{
+		isCrouching = moving;
+		SetMovementBool("isMoving", isCrouching);
+	}
+	public void SetAiming(bool aiming)
+	{
+		isAiming = aiming;
+		SetAimingBool("isAiming", isAiming);
+	}
+
+	void SetAimingBool(string name, bool state)
+	{
+		foreach (var animator in aimingAnimators)
+		{
+			animator.SetBool(name, state);
+		}
+	}
+	void SetMovementBool(string name, bool state)
+	{
+		foreach (var animator in movementAnimators)
+		{
+			animator.SetBool(name, state);
+		}
 	}
 }

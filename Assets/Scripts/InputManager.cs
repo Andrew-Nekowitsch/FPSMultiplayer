@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
 	private AdvancedWalkerController advancedWalkerController;
 	[SerializeField]
 	private CameraController cameraController;
+	[SerializeField]
+	private PlayerAnimator playerAnimator;
 
 	// Start is called before the first frame update
 	void Awake()
@@ -22,11 +24,15 @@ public class InputManager : MonoBehaviour
 			cameraController = GetComponent<CameraController>();
 		if (!advancedWalkerController)
 			advancedWalkerController = GetComponent<AdvancedWalkerController>();
+		if (!playerAnimator)
+			playerAnimator = GetComponent<PlayerAnimator>();
+
 		onFoot = playerInput.OnFoot;
 		//onFoot.Jump.performed += ctx => playerMotor.Jump();
 		//onFoot.Sprint.performed += ctx => playerMotor.Run();
 		//onFoot.Crouch.performed += ctx => playerMotor.Crouch();
 		onFoot.FreeLook.performed += ctx => cameraController.FreeLook(ctx.ReadValueAsButton());
+		onFoot.ADS.performed += ctx => playerAnimator.SetAiming(ctx.ReadValueAsButton());
 	}
 
 	// Update is called once per frame

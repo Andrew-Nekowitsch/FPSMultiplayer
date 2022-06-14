@@ -72,7 +72,7 @@ public class PlayerMotor : MonoBehaviour
 				Crouch();
 
 			isRunning = !isRunning;
-			playerAnimator.ToggleRunning();
+			playerAnimator.SetRunning(isRunning);
 			speed = isRunning ? runSpeed : walkSpeed;
 		}
 	}
@@ -80,14 +80,14 @@ public class PlayerMotor : MonoBehaviour
 	public void Crouch()
 	{
 		isCrouching = !isCrouching;
-		playerAnimator.ToggleCrouching();
+		playerAnimator.SetCrouching(isCrouching);
 		crouchTimer = 0f;
 		crouchLerp = true;
 		speed = isCrouching ? crouchSpeed : walkSpeed;
 		if (isRunning)
 		{
 			isRunning = false;
-			playerAnimator.ToggleRunning();
+			playerAnimator.SetRunning(isRunning);
 		}
 	}
 

@@ -46,6 +46,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ADS"",
+                    ""type"": ""Button"",
+                    ""id"": ""db3da685-7189-4de2-9648-6211a8cff1ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""01114633-da19-4433-9b40-e158848535f8"",
@@ -331,6 +340,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""FreeLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31dda2ec-ea99-4d33-b1dd-ae74fa55fe6b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ADS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0da6c68f-3e9f-43f3-9d74-c5ce33930e95"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ADS"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -859,6 +890,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnFoot = asset.FindActionMap("OnFoot", throwIfNotFound: true);
         m_OnFoot_Movement = m_OnFoot.FindAction("Movement", throwIfNotFound: true);
         m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
+        m_OnFoot_ADS = m_OnFoot.FindAction("ADS", throwIfNotFound: true);
         m_OnFoot_Look = m_OnFoot.FindAction("Look", throwIfNotFound: true);
         m_OnFoot_Crouch = m_OnFoot.FindAction("Crouch", throwIfNotFound: true);
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
@@ -937,6 +969,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IOnFootActions m_OnFootActionsCallbackInterface;
     private readonly InputAction m_OnFoot_Movement;
     private readonly InputAction m_OnFoot_Jump;
+    private readonly InputAction m_OnFoot_ADS;
     private readonly InputAction m_OnFoot_Look;
     private readonly InputAction m_OnFoot_Crouch;
     private readonly InputAction m_OnFoot_Sprint;
@@ -948,6 +981,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public OnFootActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_OnFoot_Movement;
         public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
+        public InputAction @ADS => m_Wrapper.m_OnFoot_ADS;
         public InputAction @Look => m_Wrapper.m_OnFoot_Look;
         public InputAction @Crouch => m_Wrapper.m_OnFoot_Crouch;
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
@@ -968,6 +1002,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnJump;
+                @ADS.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnADS;
+                @ADS.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnADS;
+                @ADS.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnADS;
                 @Look.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLook;
@@ -993,6 +1030,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @ADS.started += instance.OnADS;
+                @ADS.performed += instance.OnADS;
+                @ADS.canceled += instance.OnADS;
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
@@ -1121,6 +1161,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnADS(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
