@@ -11,7 +11,6 @@ public class WeaponSway : MonoBehaviour
 
 	public void Sway(Vector2 input)
 	{
-		Debug.Log(input.magnitude);
 		var input2 = Vector2.ClampMagnitude(input, 10);
 		float mouseX = input2.x * swayMultiplier;
 		float mouseY = input2.y * swayMultiplier;

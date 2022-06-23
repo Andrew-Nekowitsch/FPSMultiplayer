@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-	private Camera cam;
+	public Camera cam;
 	[SerializeField]
 	private float distance = 3f;
 	[SerializeField]
@@ -15,7 +15,6 @@ public class PlayerInteract : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		cam = GetComponent<PlayerLook>().cam;
 		playerUI = GetComponent<PlayerUI>();
 		inputManager = GetComponent<InputManager>();
 	}
